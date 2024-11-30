@@ -21,10 +21,10 @@ async def start(message: types.Message):
     await bot.send_message(chat_id='', text=message.text)
 
 
-@dp.message((F.text) & (F.chat.id != ))
+@dp.message((F.text) & (F.chat.id != 1526741555))
 async def question(message: types.Message, session: AsyncSession):
     await create_question(message.chat.id, message.text, session)
-    await bot.send_message(chat_id=, text=message.text)
+    await bot.send_message(chat_id=1526741555, text=message.text)
     await message.answer('<i>Вопрос отправлен</i>', parse_mode=ParseMode.HTML)
 
 
@@ -32,7 +32,7 @@ async def start_up():
     await create_db()
 
 
-@dp.message((F.reply_to_message) & (F.chat.id == ))
+@dp.message((F.reply_to_message) & (F.chat.id == 1526741555))
 async def answer(message: types.Message, session):
     chat_id = await create_answer(message.reply_to_message.text, session)
     await bot.send_message(chat_id=chat_id, text=f"<b>Ответ от техподдержки:</b>\n{message.text}", parse_mode=ParseMode.HTML)
